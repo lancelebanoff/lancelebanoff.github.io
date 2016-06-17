@@ -46,6 +46,9 @@ function displayVerse(verse, verseIndex, chapterIndex) {
 		$(wordSpan).attr("word-strong-number", verse[wordIndex].strongNumber);
 		$(wordSpan).attr("word-morphology", verse[wordIndex].morphology);
 		$(wordSpan).attr('verse-number', verseIndexAsString);
+		$(wordSpan).attr("title", "Definition");
+		$(wordSpan).attr("data-toggle", "popover");
+		$(wordSpan).attr("data-html", "true");
 		$(wordSpan).attr('chapter-number', chapterIndexAsString);
 		$(wordSpan).addClass('word');
 		$(verseSpan).append($(wordSpan));

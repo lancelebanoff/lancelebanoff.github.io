@@ -12,27 +12,37 @@
 	</head>
 	<body>
 		<div class="container">
+
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<br>
+				<div class="row">
+				<div class="col-lg-1"></div>
+					<div class="col-lg-2">
+						Book <select id="book-dropdown" class="form-control"></select>
+					</div>
+					<div class="col-lg-2">
+						Start Chapter <select id="start-chapter-dropdown" class="form-control"></select>
+					</div>
+					<div class="col-lg-2">
+						End Chapter <select id="end-chapter-dropdown" class="form-control"></select>
+					</div>
+					<div class="col-lg-1">
+					<br>
+					<!--Copy Button-->
+					<button class="btn btn-default" id="copy-button" title="Copy Selection with Reference">Copy Selection</button>
+					</div>
+				</div>
+				<br>
+			</nav>
+
 			<!-- Commented out because not working yet <a id="prev_chapter_arrow" class="carousel-control left" href="#" data-slide="prev">
 			    <span class="glyphicon glyphicon-chevron-left"></span>
 			</a> -->
+			<br><br><br>
 			<div class="row">
 				<div class="col-lg-1"></div>
 				<div class="col-lg-10">
 					<h1> </h1>
-					<div class="row">
-						<div class="col-lg-4">
-							Book <select id="book-dropdown" class="form-control"></select>
-						</div>
-						<div class="col-lg-4">
-							Start Chapter <select id="start-chapter-dropdown" class="form-control"></select>
-						</div>
-						<div class="col-lg-4">
-							End Chapter <select id="end-chapter-dropdown" class="form-control"></select>
-						</div>
-					</div>
-					<br>
-					<!--Copy Button-->
-					<button class="btn btn-default" id="copy-button" title="Copy Selection with Reference">Copy Selection</button>
 					<br>
 
 					<div id="scripture-text">

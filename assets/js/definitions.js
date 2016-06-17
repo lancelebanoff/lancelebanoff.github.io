@@ -4,25 +4,6 @@
 
 var displayedPopover = null;
 
-// Adds definition and morphology to each word's popover
-function addAllDefinitions() {
-	$(".word").each(function(index) {
-		// Gets the strong number without the letter
-		var strongNum = $(this).attr("word-strong-number").substr(1);
-		var item = findLexiconItem(strongNum);
-		$(this).attr("title", "Definition");
-		$(this).attr("data-toggle", "popover");
-		$(this).attr("data-html", "true");
-		if (item != null) {
-			$(this).attr("data-content", "<i>" + item["morphology"] + "</i><br>" + item["long"]);
-		}
-		// If definition was not found
-		else {
-			$(this).attr("data-content", "<i>" + $(this).attr("word-morphology") + "</i><br>No definition found");
-		}
-	});
-}
-
 function findLexiconItem(strongNum) {
 	if(strongNum in lexiconObject) {
 		return lexiconObject[strongNum];
@@ -34,6 +15,17 @@ function findLexiconItem(strongNum) {
 function makePopoversHideable() {
 
 	$(".word").click(function() {
+		// Gets the strong number without the letter
+		var strongNum = $(this).attr("word-strong-number").substr(1);
+		var item = findLexiconItem(strongNum);
+		if (item != null) {
+			$(this).attr("data-content", "<i>" + item["morphology"] + "</i><br>" + item["long"]);
+		}
+
+		// If definition was not found
+		else {
+			$(this).attr("data-content", "<i>" + $(this).attr("word-morphology") + "</i><br>No definition found");
+		}
 		if(displayedPopover != null && !displayedPopover.is($(this))) {
 			displayedPopover.popover('hide');
 		}
@@ -84,7 +76,6 @@ function parseLexiconWord(wordJson) {
 }
 
 function handleDefinitionPopovers() {
-	addAllDefinitions();
 	makePopoversHideable();
 	// Creates popovers for all words
     $('[data-toggle="popover"]').popover(); 
