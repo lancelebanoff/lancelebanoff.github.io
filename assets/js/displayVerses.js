@@ -1,12 +1,26 @@
-function displayBookChapter(bookName, chapterIndex) {
-	$("#chapter-header").text(bookName + " " + indexAsString(chapterIndex));
+function displayBookChapters(bookName, startChapterIndex, endChapterIndex) {
+	viewedBookName = bookName;
 	$("#scripture-text").html("");
+	for(var i = startChapterIndex; i <= endChapterIndex; i++) {
+		displayChapter(bookName, i);
+	}
+	waitThenHandleDefinitionPopovers();
+}
+
+function displayChapter(bookName, chapterIndex) {
+	// Display chapter header
+	var chapterHeader = document.createElement("h1");
+	$(chapterHeader).addClass("chapter-header");
+	$(chapterHeader).text(bookName + " " + indexAsString(chapterIndex));
+	$("#scripture-text").append($(chapterHeader));
+	var linebreak = document.createElement("br");
+	$("#scripture-text").append($(linebreak));
+	// Display verses
 	var chapter = bibleObject[bookName][chapterIndex];
 	for(verseIndex = 0; verseIndex < chapter.length; verseIndex++) {
 		var verse = chapter[verseIndex];
-		displayVerse(verse, verseIndex);
+		displayVerse(verse, verseIndex, chapterIndex);
 	}
-	waitThenHandleDefinitionPopovers();
 }
 
 function waitThenHandleDefinitionPopovers() {
@@ -17,10 +31,12 @@ function waitThenHandleDefinitionPopovers() {
 	setTimeout(waitThenHandleDefinitionPopovers, 50);
 }
 
-function displayVerse(verse, verseIndex) {
+function displayVerse(verse, verseIndex, chapterIndex) {
 	var verseIndexAsString = indexAsString(verseIndex);
+	var chapterIndexAsString = indexAsString(chapterIndex);
 	var verseSpan = document.createElement("span");
 	$(verseSpan).attr("verse-number", verseIndexAsString);
+	$(verseSpan).attr("chapter-number", chapterIndexAsString);
 	$(verseSpan).addClass('verse');
 	var wordIndex ;
 	for(wordIndex = 0; wordIndex < verse.length; wordIndex++) {
@@ -30,6 +46,7 @@ function displayVerse(verse, verseIndex) {
 		$(wordSpan).attr("word-strong-number", verse[wordIndex].strongNumber);
 		$(wordSpan).attr("word-morphology", verse[wordIndex].morphology);
 		$(wordSpan).attr('verse-number', verseIndexAsString);
+		$(wordSpan).attr('chapter-number', chapterIndexAsString);
 		$(wordSpan).addClass('word');
 		$(verseSpan).append($(wordSpan));
 

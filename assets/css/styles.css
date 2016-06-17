@@ -2,3 +2,20 @@
 	cursor:pointer;
 	color:blue;
 }
+
+.carousel-control.left, .carousel-control.right {
+	background: none !important;
+	filter: progid: none !important;
+	outline: 0;
+	position: fixed;
+	top: 1em;
+ }
+.carousel .carousel-control {
+	visibility: hidden;
+}
+.carousel:hover .carousel-control {
+	visibility: visible;
+}
+.glyphicon-chevron-left, .glyphicon-chevron-right {
+	color: black;
+}

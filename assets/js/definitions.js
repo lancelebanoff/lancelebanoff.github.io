@@ -2,6 +2,8 @@
  * When you click a word, a popover appears with the morphology and definition
 */
 
+var displayedPopover = null;
+
 // Adds definition and morphology to each word's popover
 function addAllDefinitions() {
 	$(".word").each(function(index) {
@@ -30,29 +32,34 @@ function findLexiconItem(strongNum) {
 
 // By default, popovers don't disappear until the word is clicked, so this makes them disappear when clicked outside
 function makePopoversHideable() {
+
+	$(".word").click(function() {
+		if(displayedPopover != null && !displayedPopover.is($(this))) {
+			displayedPopover.popover('hide');
+		}
+		displayedPopover = $(this);
+	});
+
 	$('body').on('click', function (e) {
-	    $('[data-toggle="popover"]').each(function () {
-	        //the 'is' for buttons that trigger popups
-	        //the 'has' for icons within a button that triggers a popup
-	        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-	            $(this).popover('hide');
-	        }
-	    });
+        if (displayedPopover != null && !displayedPopover.is(e.target) && displayedPopover.has(e.target).length === 0) {
+            displayedPopover.popover('hide');
+        }
 	});
 
 	// Fixes a bug so only one click is needed to reopen a popover
 	$('body').on('hidden.bs.popover', function (e) {
 	    $(e.target).data("bs.popover").inState.click = false;
 	});
+
 }
 
 // Main
 $(function() {
-	var lexiconFileNAme = "assets/json/lexicon-eph-english.json";
+	var lexiconFileNAme = "assets/json/lexicons/lexicon-eph-english.json";
 	var continueStartingFunction = function(lexiconText, deadParam) {
 		return continueStarting(lexiconText, deadParam);
 	};
-	readTextFile(lexiconFileNAme, null, continueStartingFunction);
+	readTextFile(lexiconFileNAme, continueStartingFunction);
 });
 
 // Continues Main after async readTextFile()
@@ -81,4 +88,8 @@ function handleDefinitionPopovers() {
 	makePopoversHideable();
 	// Creates popovers for all words
     $('[data-toggle="popover"]').popover(); 
+}
+
+function destroyPreviousPopovers() {
+	$('[data-toggle="popover"]').popover('destroy');
 }

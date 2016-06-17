@@ -1,0 +1,10 @@
+{
+	"books": [
+		"Ephesians",
+		"Philippians"
+	],
+	"lexicons": [
+		"lexicon-eph-english.json",
+		"lexicon-phi-english.json"
+	]
+}

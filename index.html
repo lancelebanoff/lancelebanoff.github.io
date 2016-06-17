@@ -8,43 +8,60 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="assets/css/styles.css">
-	
 
 	</head>
 	<body>
 		<div class="container">
+			<!-- Commented out because not working yet <a id="prev_chapter_arrow" class="carousel-control left" href="#" data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left"></span>
+			</a> -->
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-1"></div>
+				<div class="col-lg-10">
 					<h1> </h1>
-					Chapter <span class="dropdown">
-						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							1
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu dropdown-menu-chapter" aria-labelledby="dropdownMenu1">
-						</ul>
+					<div class="row">
+						<div class="col-lg-4">
+							Book <select id="book-dropdown" class="form-control"></select>
+						</div>
+						<div class="col-lg-4">
+							Start Chapter <select id="start-chapter-dropdown" class="form-control"></select>
+						</div>
+						<div class="col-lg-4">
+							End Chapter <select id="end-chapter-dropdown" class="form-control"></select>
+						</div>
 					</div>
-					<br><br><br>
-					<h1 id="chapter-header">Ephesians</h1>
 					<br>
+					<!--Copy Button-->
+					<button class="btn btn-default" id="copy-button" title="Copy Selection with Reference">Copy Selection</button>
+					<br>
+
 					<div id="scripture-text">
 
 					</div>
 				</div>
+				<div class="col-lg-1"></div>
 			</div>
+			<!-- Commented out because not working yet <a id="next_chapter_arrow" class="carousel-control right" href="#/current/next" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right"></span>
+			</a> -->
 		</div>
 
-		
+	
 	<script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
 	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js"></script>
+	<script type="text/javascript" src="assets/js/dropdown.js"></script>
+	<script type="text/javascript" src="assets/js/readFiles.js"></script>
 	<script type="text/javascript" src="assets/js/displayVerses.js"></script>
 	<script type="text/javascript" src="assets/js/parseJson.js"></script>
 	<script type="text/javascript" src="assets/js/script.js"></script>
 	<script type="text/javascript" src="assets/js/dialogBox.js"></script>
+	<script type='text/javascript' src='assets/js/copy.js'></script>
 	<script type="text/javascript" src="assets/js/highlightedText.js"></script>
 	<script type="text/javascript" src="assets/js/definitions.js"></script>
+	
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
